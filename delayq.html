@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html> <head> <style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: red;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style>
+<title>delay queue</title>
+</head>
+
+
+
+<body>
+	<h2>Shanmuk builds a delaying queue</h2>
+	<input type="text" id="input">
+	<br>
+		<div class="flex-container" id="target">
+		  <div class="delayQ">row item 1</div>   
+		  <div class="delayQ">row item 2</div>  
+		  <div class="delayQ">row item 3</div>  
+		</div>
+	
+	<p> Press the button to create an new element of type div and then add it to the container.</p>
+	<button onclick="makeNewDiv()">Add value</button>
+	<button onclick="get()">Get</button>
+	<button onclick="delay()">Delay</button>
+	
+	
+</body>
+<script>
+	var removedItem
+	function makeNewDiv(){
+		/* make the div and its text */
+		let element = document.createElement("div")
+		element.innerHTML = document.getElementById("input").value;
+		element.style.color = "orange"
+		element.classList.add("delayQ")
+
+		/* add it to the container */
+		let container = document.getElementById('target')
+		container.appendChild(element)
+		
+	}
+
+	function get(){
+		var queueItems = document.getElementsByClassName("delayQ");
+		if(queueItems.length > 0){
+			removedItem = queueItems[0]
+			queueItems[0].remove()
+		}
+	}
+
+	function delay(){
+		var queueItems = document.getElementsByClassName("delayQ");
+		if(!queueItems.length <= 1){
+			let container = document.getElementById("target")
+			//container.appendChild(removedItem)
+			container.insertBefore(removedItem,container.firstChild)
+		}
+	}
+</script>
+</html>	
