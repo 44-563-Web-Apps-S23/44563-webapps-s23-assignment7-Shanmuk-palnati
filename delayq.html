@@ -64,12 +64,19 @@
 	}
 
 	function delay(){
-		var queueItems = document.getElementsByClassName("delayQ");
-		if(!queueItems.length <= 1){
-			let container = document.getElementById("target")
-			//container.appendChild(removedItem)
-			container.insertBefore(removedItem,container.firstChild)
-		}
-	}
+        queueItems=document.getElementsByClassName('delayQ');
+        let len=queueItems.length;
+        console.log(queueItems);
+        if(!len<=1){
+            console.log("length is: "+len);
+            removedItem=queueItems[0];
+            console.log(removedItem);
+            console.log(removedItem.innerHTML);
+            queueItems[0].remove();
+            let container = document.getElementById('target')
+	        container.append(removedItem,container.firstChild)
+        }
+        
+    }
 </script>
 </html>	
